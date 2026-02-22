@@ -50,13 +50,13 @@ INSTALLED_APPS = [
    
 ]
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
-    
-    "django.middleware.common.CommonMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 
     "django.contrib.sessions.middleware.SessionMiddleware",
-    
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -75,6 +75,11 @@ CSRF_COOKIE_SAMESITE = None
 CSRF_COOKIE_SECURE =False
 
 ROOT_URLCONF = "APAME.urls"
+
+
+
+REACT_BASE_URL= os.get_env("REACT_URL","http://localhost:5173")
+
 
 TEMPLATES = [
     {
@@ -171,6 +176,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL='/img/'
 MEDIA_ROOT= BASE_DIR/"media"
 

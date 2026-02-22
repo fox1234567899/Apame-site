@@ -18,7 +18,7 @@ from rest_framework import status
 
 
 
-BASE_URL = "http://localhost:5173"
+BASE_URL = settings.REACT_BASE_URL
 
 def get_or_create_cart(request):
     cart=None
