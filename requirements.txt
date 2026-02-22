@@ -7,7 +7,6 @@ annotated-types==0.7.0
 anyascii==0.3.3
 argon2-cffi==23.1.0
 argon2-cffi-bindings==21.2.0
-asgiref @ file:///C:/b/abs_ae1n0p_8_w/croot/asgiref_1724072476516/work
 asttokens==3.0.0
 async-timeout==5.0.1
 attrs==25.4.0
