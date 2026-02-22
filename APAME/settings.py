@@ -78,7 +78,7 @@ ROOT_URLCONF = "APAME.urls"
 
 
 
-REACT_BASE_URL= os.get_env("REACT_URL","http://localhost:5173")
+REACT_BASE_URL= os.getenv("REACT_URL","http://localhost:5173")
 
 
 TEMPLATES = [
