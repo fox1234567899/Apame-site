@@ -194,18 +194,18 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60)
 }
 
-
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 FLUTTERWAVE_SECRET_KEY = os.getenv('FLATTERWAVE_KEY')
 
 
-AWS_ACCESS_KEY_ID = os.getenv('AWS_KEY')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.getenv('SUPABASE_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.getenv('SUPABASE_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME ="media"
 AWS_S3_ENDPOINT_URL =os.getenv('AWS_S3_ENDPOINT')
 AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION')
-AWS_S3_OBJECT_PARAMETERS = os.getenv('AWS_S3_OBJECT')
+AWS_DEFAULT_ACL = None                                         
+AWS_QUERYSTRING_AUTH = False  
 
 
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
