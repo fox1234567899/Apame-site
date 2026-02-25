@@ -47,6 +47,7 @@ INSTALLED_APPS = [
    
     'corsheaders',
     'rest_framework',
+    'storages'
    
 ]
 MIDDLEWARE = [
@@ -196,3 +197,15 @@ SIMPLE_JWT = {
 
 
 FLUTTERWAVE_SECRET_KEY = os.getenv('FLATTERWAVE_KEY')
+
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_KEY')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_KEY ')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME ')
+AWS_S3_ENDPOINT_URL =os.getenv('AWS_S3_ENDPOINT ')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION')
+AWS_S3_OBJECT_PARAMETERS = os.getenv('AWS_S3_OBJECT')
+
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
