@@ -170,7 +170,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_URL='/img/'
+MEDIA_URL="https://isiawkbbitqdxoboymtp.supabase.co/storage/v1/object/public/media/"
 MEDIA_ROOT= BASE_DIR/"media"
 
 # Default primary key field type
@@ -200,9 +200,9 @@ FLUTTERWAVE_SECRET_KEY = os.getenv('FLATTERWAVE_KEY')
 
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_KEY')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_KEY ')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME ')
-AWS_S3_ENDPOINT_URL =os.getenv('AWS_S3_ENDPOINT ')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME')
+AWS_S3_ENDPOINT_URL =os.getenv('AWS_S3_ENDPOINT')
 AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION')
 AWS_S3_OBJECT_PARAMETERS = os.getenv('AWS_S3_OBJECT')
 
