@@ -166,11 +166,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-
+SUPABASE_URL=os.getenv('SUPABASE_specific_URL')
+AWS_STORAGE_BUCKET_NAME =os.getenv('SUPABASE_BUCKET')
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_URL="https://isiawkbbitqdxoboymtp.supabase.co/storage/v1/object/public/media/"
+MEDIA_URL=f'{SUPABASE_URL}/storage/v1/object/public/{AWS_STORAGE_BUCKET_NAME}/'
 MEDIA_ROOT= BASE_DIR/"media"
 
 # Default primary key field type
@@ -201,11 +202,24 @@ FLUTTERWAVE_SECRET_KEY = os.getenv('FLATTERWAVE_KEY')
 
 AWS_ACCESS_KEY_ID = os.getenv('SUPABASE_ACCESS_KEY')
 AWS_SECRET_ACCESS_KEY = os.getenv('SUPABASE_SECRET_KEY')
-AWS_STORAGE_BUCKET_NAME ="media"
+
 AWS_S3_ENDPOINT_URL =os.getenv('AWS_S3_ENDPOINT')
 AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION')
 AWS_DEFAULT_ACL = None                                         
 AWS_QUERYSTRING_AUTH = False  
 
+
+
+
+STORAGES={
+    'default':{
+        'BACKEND':'django_supabase_storage.SupabaseMediaStorage',
+
+
+    },
+    'staticfiles':{
+        'BACKEND':'django_supabase_storage.SupabaseStaticStorage',
+    },
+}
 
 

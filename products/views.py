@@ -13,6 +13,8 @@ from django.dispatch import receiver
 from decimal import Decimal
 import uuid 
 import requests
+from django.shortcuts import render
+from django.core.files.storage import default_storage
 from django.conf import settings
 from rest_framework import status
 
@@ -337,3 +339,10 @@ def payment_callback(request):
                
                
                
+def upload_avatar(request):
+    if request.method == 'POST':
+        file = request.FILES['avatar']
+        file_path = default_storage.save(f'user/{request.user.id}/{file.name}',file)
+        file_url=default_storage.url(file_path)
+        return render(request,{'file_url':file_url})
+    return render(request)
