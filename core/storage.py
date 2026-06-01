@@ -3,7 +3,7 @@ from django.core.files.storage import Storage
 from django.conf import settings 
 
 
-class SupbaseBucketStorage(Storage):
+class SupbaseStorage(Storage):
     def __init__(self):
         self.client=create_client(
             settings.SUPABASE_URL,

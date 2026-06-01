@@ -195,7 +195,7 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60)
 }
 
-DEFAULT_FILE_STORAGE = "core.storage.SupabaseBucketStorage"
+DEFAULT_FILE_STORAGE = "core.storage.SupabaseStorage"
 
 FLUTTERWAVE_SECRET_KEY = os.getenv('FLATTERWAVE_KEY')
 
@@ -204,12 +204,12 @@ SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 
 
-STORAGES = {
-    'default': {
-        'BACKEND': 'django_supabase_storage.SupabaseMediaStorage',
-    },
-    'staticfiles': {
-        'BACKEND': 'django_supabase_storage.SupabaseStaticStorage',
-    },
-}
+# STORAGES = {
+#     'default': {
+#         'BACKEND': 'django_supabase_storage.SupabaseMediaStorage',
+#     },
+#     'staticfiles': {
+#         'BACKEND': 'django_supabase_storage.SupabaseStaticStorage',
+#     },
+# }
 
