@@ -167,7 +167,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-SUPABASE_URL=os.getenv('SUPABASE__URL')
+SUPABASE_URL=os.getenv('SUPABASE_URL')
 SUPABASE_BUCKET =os.getenv('SUPABASE_BUCKET')
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
