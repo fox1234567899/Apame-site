@@ -16,7 +16,7 @@ class Item(models.Model):
                 )
     name = models.CharField(max_length=100)
     slug = models.SlugField(blank=True,null=True)
-    image=models.ImageField(upload_to='img',null=True,blank=True)
+    image=models.ImageField(upload_to='img/',null=True,blank=True)
 
 
     description=models.TextField(blank=True,null=True)
