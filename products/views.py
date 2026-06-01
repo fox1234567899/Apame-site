@@ -14,7 +14,6 @@ from decimal import Decimal
 import uuid 
 import requests
 from django.shortcuts import render
-from django.core.files.storage import default_storage
 from django.conf import settings
 from rest_framework import status
 
