@@ -339,10 +339,3 @@ def payment_callback(request):
                
                
                
-def upload_avatar(request):
-    if request.method == 'POST':
-        file = request.FILES['img']
-        file_path = default_storage.save(f'img/{request.user.id}/{file.name}',file)
-        file_url=default_storage.url(file_path)
-        return Response({'img':file_url})
-    return render(request)
