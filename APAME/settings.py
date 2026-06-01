@@ -172,9 +172,8 @@ SUPABASE_BUCKET_NAME =os.getenv('SUPABASE_BUCKET_NAME')
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_URL=f'{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET_NAME}/'
-MEDIA_ROOT= BASE_DIR/"media"
-
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -201,13 +200,8 @@ SIMPLE_JWT = {
 FLUTTERWAVE_SECRET_KEY = os.getenv('FLATTERWAVE_KEY')
 
 
-AWS_ACCESS_KEY_ID = os.getenv('SUPABASE_ACCESS_KEY')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
-AWS_S3_ENDPOINT_URL =os.getenv('AWS_S3_ENDPOINT')
-AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION')
-AWS_DEFAULT_ACL = None                                         
-AWS_QUERYSTRING_AUTH = False  
 
 
 
