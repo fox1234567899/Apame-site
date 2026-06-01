@@ -168,11 +168,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 SUPABASE_URL=os.getenv('SUPABASE_URL')
-SUPABASE_BUCKET =os.getenv('SUPABASE_BUCKET')
+SUPABASE_BUCKET_NAME =os.getenv('SUPABASE_BUCKET_NAME')
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MEDIA_URL=f'{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET}/'
+MEDIA_URL=f'{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET_NAME}/'
 MEDIA_ROOT= BASE_DIR/"media"
 
 # Default primary key field type
