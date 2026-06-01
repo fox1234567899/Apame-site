@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'storages',
-    'django_supabase_storage'
+    
    
 ]
 MIDDLEWARE = [
