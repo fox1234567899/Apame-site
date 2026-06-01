@@ -197,7 +197,7 @@ SIMPLE_JWT = {
 }
 
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
+DEFAULT_FILE_STORAGE='django_storage_supabase.supabase'
 FLUTTERWAVE_SECRET_KEY = os.getenv('FLATTERWAVE_KEY')
 
 
