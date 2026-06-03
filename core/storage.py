@@ -1,7 +1,7 @@
 from supabase import create_client 
 from django.core.files.storage import Storage 
 from django.conf import settings 
-
+import uuid 
 
 class SupabaseStorage(Storage):
     def __init__(self):
@@ -13,7 +13,7 @@ class SupabaseStorage(Storage):
         self.bucket = settings.SUPABASE_BUCKET_NAME
     
 
-    def save(self,name,content):
+    def _save(self,name,content):
         file_ext=name.split('.')[-1]
         file_name= f"{uuid.uuid4()}.{file_ext}"
 
