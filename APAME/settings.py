@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_supabase_storage",
 
     'products',
     'core',
@@ -204,20 +205,20 @@ SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 
 
-# STORAGES = {
-#     'default': {
-#         'BACKEND': 'django_supabase_storage.SupabaseMediaStorage',
-#     },
-#     'staticfiles': {
-#         'BACKEND': 'django_supabase_storage.SupabaseStaticStorage',
-#     },
-# }
-
 STORAGES = {
     "default": {
-        "BACKEND": "core.storage.SupabaseStorage",
+        "BACKEND": "django_supabase_storage.SupabaseMediaStorage",
     },
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "BACKEND": "django_supabase_storage.SupabaseStaticStorage",
     },
 }
+
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "core.storage.SupabaseStorage",
+#     },
+#     "staticfiles": {
+#         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+#     },
+# }
