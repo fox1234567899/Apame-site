@@ -213,3 +213,11 @@ SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 #     },
 # }
 
+STORAGES = {
+    "default": {
+        "BACKEND": "core.storage.SupabaseStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
