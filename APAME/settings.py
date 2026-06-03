@@ -195,7 +195,7 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60)
 }
 
-DEFAULT_FILE_STORAGE = "core.storage.SupabaseStorage"
+# DEFAULT_FILE_STORAGE = "core.storage.SupabaseStorage"
 
 FLUTTERWAVE_SECRET_KEY = os.getenv('FLATTERWAVE_KEY')
 
