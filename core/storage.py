@@ -23,6 +23,9 @@ class SupabaseStorage(Storage):
         )
         return file_name
     
+    def exists(self,name):
+        return False
+    
 
     def url(self,name):
-        return self.client.storage.from_(self.bucket).get_public_url(name)
+        return self.client.storage.from_(self.bucket).get_public_url(name)[0]
