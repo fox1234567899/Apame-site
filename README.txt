@@ -85,3 +85,6 @@
 
     and another thing is inside the supabase there is a part at the top of the site that you can change your default database to supabase database for storing the postgre SQL
 
+
+    and oh don't forget to add it to your requirements.txt
+
