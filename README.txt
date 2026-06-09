@@ -57,7 +57,7 @@
 
     easier 
 
-    ## Add the supabase to your site 
+      Add the supabase to your site 
 
 
     for connecting don't worry its not so hard if your site is working I mean the Upload or add delete or update
