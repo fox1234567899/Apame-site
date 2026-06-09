@@ -30,4 +30,58 @@
     
     their own language 
 
+
+    for example for detail part of the site we need the data such as id slug description 
     
+    price, image, name  and similar_items 
+
+    then in views.py we use these serializer and send it to react 
+
+    like in itemview we called all the objects related to Item 
+
+    and then we put them in the item serializer that we made in serializer
+
+    just for giving these data to react and the react can use it in its own way.
+
+    after that we put the views me made in urls.
+
+    another thing is for my users I used the JWT that is for authentication access key and refresh
+
+    but just becuase the jwt has its own technic for login i Kinda change it to something that I want it 
+
+    for database  i was using the default database of django then change it 
+
+    to postgres and then I use supabase . instead of using the local system
+
+    I wanted my system save the data inside the supabase just to show and manage my data 
+
+    easier 
+
+    ## Add the supabase to your site 
+
+
+    for connecting don't worry its not so hard if your site is working I mean the Upload or add delete or update
+
+    then the only thing you want is :
+
+    pip install django-supabase-storage    
+
+    and then add this to settings:
+
+    SUPABASE_URL = os.getenv('SUPABASE_URL', 'https://your-project-id.supabase.co')
+    SUPABASE_KEY = os.getenv('SUPABASE_KEY', 'your-anon-public-key')
+    SUPABASE_BUCKET = os.getenv("SUPABASE_BUCKET_NAME", 'your-supabase-bucket-name')
+
+
+    STORAGES = {
+    'default': {
+        'BACKEND': 'django_supabase_storage.SupabaseMediaStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'django_supabase_storage.SupabaseStaticStorage',
+    },
+}
+
+
+    and another thing is inside the supabase there is a part at the top of the site that you can change your default database to supabase database for storing the postgre SQL
+
