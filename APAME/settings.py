@@ -84,7 +84,8 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 REACT_BASE_URL= os.getenv("REACT_URL","http://localhost:5173")
-
+print("REACT_URL =", os.getenv("REACT_URL"))
+print("CSRF_TRUSTED_ORIGINS =", CSRF_TRUSTED_ORIGINS)
 
 TEMPLATES = [
     {
