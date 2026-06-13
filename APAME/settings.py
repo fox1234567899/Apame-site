@@ -79,7 +79,9 @@ CSRF_COOKIE_SECURE =True
 
 ROOT_URLCONF = "APAME.urls"
 
-
+CSRF_TRUSTED_ORIGINS = [
+    os.getenv("REACT_URL")
+]
 
 REACT_BASE_URL= os.getenv("REACT_URL","http://localhost:5173")
 
