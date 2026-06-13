@@ -298,43 +298,38 @@ def apame_payment(request):
 
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 def payment_callback(request):
-    status= request.GET.get('status')
     tx_ref = request.GET.get('tx_ref')
     transaction_id = request.GET.get('transaction_id')
 
-
-    user= request.user 
-
-
-    if status == 'successful':
-        headers = {
+    transaction= Transaction.objects.filter(ref=tx_ref).first()
+    if not transaction:
+        return Response({"error":"Invalid"},status=400)
+    
+    if transaction.status == "completed":
+        return Response({"message":"Already processed"},status=200)
+    headers = {
             'Authorization': f'Bearer {settings.FLUTTERWAVE_SECRET_KEY}'
         }
-        response = requests.get(f'https://api.flutterwave.com/v3/transactions/{transaction_id}/verify', headers = headers)
-        response_data = response.json() 
+    response = requests.get(f'https://api.flutterwave.com/v3/transactions/{transaction_id}/verify', headers = headers)
+    response_data = response.json() 
 
-        if response_data['status'] == 'success':
-            transaction = Transaction.objects.get(ref=tx_ref)
-            if(response_data['data']['status'] == 'successful'
-            and float(response_data['data']['amount']) == float(transaction.amount)
-            and response_data['data']['currency'] == transaction.currency):
-               transaction.status = 'completed'
-               transaction.save()
+    if response_data.get('status') != 'success':
+        return Response({"message":"verification failed","subMessage": "Could not verify transaction with Flutterwave"},status=400)
+    payload = response_data.get('data',{})
 
-               order = transaction.order 
-               order.status = 'completed'
-               order.save()
-               Cart.objects.filter(user=order.user).delete()
-               return Response({'message': 'Payment successful', 'subMessage':'you have made payment successfully'}, status=200)
-            else:
-                return Response({'message': 'Payment Verification failed', 'subMessage':'Your payment verification failed'}, status =400)
-        else:
-            return Response({'message': 'failed to verify transaction with Flutterwave', 'subMessage':'we could not verify transaction with flutterwave'}, status =400)
+    if(payload.get('status') == 'successful'
+       and Decimal(str(payload.get('amount')))== transaction.amount
+       and payload.get('currency') == transaction.currency):
+       transaction.status = 'completed'
+       transaction.save()
+       order = transaction.order 
+       order.status = 'completed'
+       order.save()
+       Cart.objects.filter(user=order.user).delete()
+       return Response({'message': 'Payment successful', 'subMessage':'you have made payment successfully'}, status=200)
     else:
-        return Response({'message': 'Payment was not successful', },status=400)
+        return Response({'message': 'Payment Verification failed', 'subMessage':'unsuccessful payment'}, status =400)
 
-               
-               
                
