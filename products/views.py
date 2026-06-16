@@ -252,7 +252,7 @@ def apame_payment(request):
             phone = phone.replace("+", "").replace(" ","")
             transaction = Transaction.objects.create(
                 ref=tx_ref,
-                order=order,
+                
                 amount= total_amount,
                 currency = currency,
                 user=user,
@@ -322,6 +322,16 @@ def payment_callback(request):
     if(payload.get('status') == 'successful'
        and Decimal(str(payload.get('amount')))== transaction.amount
        and payload.get('currency') == transaction.currency):
+       order=Order.objects.create(user=transaction.user,status='completed')
+       for cartitem in cart.things.all():
+           OrderItem.objects.create(
+               order=order,
+               item=cartitem.item,
+               quantity=cartitem.quantity,
+               price=cartitem.item.price,
+
+
+           )
        transaction.status = 'completed'
        transaction.save()
        order = transaction.order 
