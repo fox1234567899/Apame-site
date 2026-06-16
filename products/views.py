@@ -326,25 +326,10 @@ def payment_callback(request):
        order.save()
        transaction.status="completed"
        transaction.save()
-       cart = Cart.objects.get(user=transaction.user)
-       for cartitem in cart.things.all():
-           OrderItem.objects.create(
-               order=order,
-               item=cartitem.item,
-               quantity=cartitem.quantity,
-               price=cartitem.item.price,
-
-
-           )
+     
    
        Cart.objects.filter(user=order.user).delete()
        return Response({'message': 'Payment successful', 'subMessage':'you have made payment successfully'}, status=200)
-    elif(payload.get('status') == 'cancelled'):
-        order.status = "cancelled"
-        order.save()
-        transaction.status= 'cancelled'
-        transaction.save()
-        return Response({'message': 'Payment Cancelled', 'subMessage':'Cancelled the payment'}, status =400)
     else:
         return Response({'message': 'Payment Verification failed', 'subMessage':'unsuccessful payment'}, status =400)
 
