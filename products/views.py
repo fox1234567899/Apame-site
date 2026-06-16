@@ -323,6 +323,7 @@ def payment_callback(request):
        and Decimal(str(payload.get('amount')))== transaction.amount
        and payload.get('currency') == transaction.currency):
        order=Order.objects.create(user=transaction.user,status='completed')
+       cart = Cart.objects.get(user=transaction.user)
        for cartitem in cart.things.all():
            OrderItem.objects.create(
                order=order,
