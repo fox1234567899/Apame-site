@@ -252,7 +252,7 @@ def apame_payment(request):
             phone = phone.replace("+", "").replace(" ","")
             transaction = Transaction.objects.create(
                 ref=tx_ref,
-                order=order
+                order=order,
                 amount= total_amount,
                 currency = currency,
                 user=user,
