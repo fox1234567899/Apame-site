@@ -71,16 +71,30 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5175',
     os.getenv("REACT_URL"),
 ]
+
+
 CORS_ALLOW_CREDENTIALS=True
-SESSION_COOKIE_SAMESITE = "None"
-SESSION_COOKIE_SECURE= True
-CSRF_COOKIE_SAMESITE = "None"
-CSRF_COOKIE_SECURE =True
+if DEBUG:
+    SESSION_COOKIE_SAMESITE = "Lax"
+    SESSION_COOKIE_SECURE= False
+    CSRF_COOKIE_SAMESITE = "Lax"
+    CSRF_COOKIE_SECURE =False
+else:
+    SESSION_COOKIE_SAMESITE = "None"
+    SESSION_COOKIE_SECURE= True
+    CSRF_COOKIE_SAMESITE = "None"
+    CSRF_COOKIE_SECURE =True
+
+    
+
 
 ROOT_URLCONF = "APAME.urls"
 
 CSRF_TRUSTED_ORIGINS = [
-    os.getenv("REACT_URL")
+   'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    os.getenv("REACT_URL"),
 ]
 
 REACT_BASE_URL= os.getenv("REACT_URL","http://localhost:5173")
