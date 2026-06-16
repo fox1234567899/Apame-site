@@ -252,7 +252,7 @@ def apame_payment(request):
             phone = phone.replace("+", "").replace(" ","")
             transaction = Transaction.objects.create(
                 ref=tx_ref,
-                
+                order=order
                 amount= total_amount,
                 currency = currency,
                 user=user,
@@ -318,11 +318,14 @@ def payment_callback(request):
     if response_data.get('status') != 'success':
         return Response({"message":"verification failed","subMessage": "Could not verify transaction with Flutterwave"},status=400)
     payload = response_data.get('data',{})
-
+    order=transaction.order
     if(payload.get('status') == 'successful'
        and Decimal(str(payload.get('amount')))== transaction.amount
        and payload.get('currency') == transaction.currency):
-       order=Order.objects.create(user=transaction.user,status='completed')
+       order.status="completed"
+       order.save()
+       transaction.status="completed"
+       transaction.save()
        cart = Cart.objects.get(user=transaction.user)
        for cartitem in cart.things.all():
            OrderItem.objects.create(
@@ -333,13 +336,15 @@ def payment_callback(request):
 
 
            )
-       transaction.status = 'completed'
-       transaction.save()
-       order = transaction.order 
-       order.status = 'completed'
-       order.save()
+   
        Cart.objects.filter(user=order.user).delete()
        return Response({'message': 'Payment successful', 'subMessage':'you have made payment successfully'}, status=200)
+    elif(payload.get('status') == 'cancelled'):
+        order.status = "cancelled"
+        order.save()
+        transaction.status= 'cancelled'
+        transaction.save()
+        return Response({'message': 'Payment Cancelled', 'subMessage':'Cancelled the payment'}, status =400)
     else:
         return Response({'message': 'Payment Verification failed', 'subMessage':'unsuccessful payment'}, status =400)
 
