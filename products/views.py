@@ -16,8 +16,8 @@ import requests
 from django.shortcuts import render
 from django.conf import settings
 from rest_framework import status
-
-
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.http import JsonResponse
 
 BASE_URL = settings.REACT_BASE_URL
 
@@ -333,3 +333,8 @@ def payment_callback(request):
         return Response({'message': 'Payment Verification failed', 'subMessage':'unsuccessful payment'}, status =400)
 
                
+
+
+@ensure_csrf_cookie
+def csrf_cookie_view(request):
+    return JsonResponse({"success":True})

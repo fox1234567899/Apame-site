@@ -17,6 +17,7 @@ urlpatterns = [
     path("apame_payment/",views.apame_payment,name='apame_payment'),
     path("payment_callback/",views.payment_callback,name='payment_callback'),
     path("changeProfilePicture/",views.changeProfilePicture,name='changeProfilePicture'),
+    path("csrf_cookie_view/",views.csrf_cookie_view,name='csrf_cookie_view'),
 
 
 ]
