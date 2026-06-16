@@ -91,9 +91,7 @@ else:
 ROOT_URLCONF = "APAME.urls"
 
 CSRF_TRUSTED_ORIGINS = [
-   'http://localhost:5173',
-    'http://localhost:5174',
-    'http://localhost:5175',
+
     os.getenv("REACT_URL"),
 ]
 
