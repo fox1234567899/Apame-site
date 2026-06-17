@@ -298,7 +298,7 @@ def apame_payment(request):
 
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 def payment_callback(request):
     tx_ref = request.GET.get('tx_ref')
     transaction_id = request.GET.get('transaction_id')
@@ -336,6 +336,3 @@ def payment_callback(request):
                
 
 
-@ensure_csrf_cookie
-def csrf_cookie_view(request):
-    return JsonResponse({"success":True})
