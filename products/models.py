@@ -111,7 +111,7 @@ class Transaction(models.Model):
     ref= models.CharField(max_length=255,unique=True,)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
 
-    order = models.ForeignKey(Order ,related_name='transactions', on_delete=models.CASCADE)   
+    order = models.ForeignKey(Order ,related_name='transactions', on_delete=models.CASCADE,null=True,blank=True)   
     currency = models.CharField(max_length=10, default='USD')
     status= models.CharField(max_length=20,default='pending')
     user= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,blank=True)
