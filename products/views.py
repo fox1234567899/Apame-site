@@ -235,14 +235,7 @@ def apame_payment(request):
             tx_ref = str(uuid.uuid4())
             cart = Cart.objects.get(user=user)
             amount = sum([item.quantity * item.item.price for item in cart.things.all()])
-            order=Order.objects.create(user=user,status="pending")
-            for cartitem in cart.things.all():
-                OrderItem.objects.create(
-                    order=order,
-                    item=cartitem.item,
-                    quantity=cartitem.quantity,
-                    price=cartitem.item.price
-                )
+           
             tax= Decimal("4.00")
             shipping=Decimal("10.00")
             total_amount=amount + tax + shipping
@@ -252,7 +245,7 @@ def apame_payment(request):
             phone = phone.replace("+", "").replace(" ","")
             transaction = Transaction.objects.create(
                 ref=tx_ref,
-                order=order,
+                cart=cart,
                 amount= total_amount,
                 currency = currency,
                 user=user,
@@ -293,7 +286,7 @@ def apame_payment(request):
             else:
                 return Response(response.json(),status=response.status_code)
         except requests.exceptions.RequestException as e:
-            return Response({'error': str(e)}, status = status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response({'error': str(e)}, status = status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 
