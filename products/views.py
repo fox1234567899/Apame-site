@@ -32,12 +32,15 @@ def get_or_create_cart(request):
         
                     
     else:
+        session_key = request.session.session_key
+        if not session_key:
+            request.session.save()
+            session_key = request.session.session_key
         
-        if not request.session.session_key:
-            request.session.create()
-        cart=Cart.objects.filter(session_id=request.session.session_key).first()
+        cart=Cart.objects.filter(session_id=session_key).first()
         if not cart:
-            cart=Cart.objects.create(session_id=request.session.session_key,)
+            cart=Cart.objects.create(session_id=session_key,)
+            
     return cart
             
 
